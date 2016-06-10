@@ -14,10 +14,14 @@ else
 KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
 
-default:
+default: module example
+
+module:
 	${MAKE} -C ${KERNELDIR} SUBDIRS=${PWD} modules
+
 
 clean:
 	${MAKE} -C ${KERNELDIR} SUBDIRS=${PWD} clean
+	$(RM) example
 
 endif

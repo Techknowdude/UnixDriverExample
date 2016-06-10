@@ -36,7 +36,7 @@ void get_status(int fd)
         else
         {
             printf("Status : %d\n", status);
-        }                                               }
+        }        
 }
 
 void clr_buf(int fd)
@@ -49,7 +49,7 @@ void clr_buf(int fd)
 
 void set_buf(int fd)
 {
-    if (ioctl(fd, QUERY_SET_VARIABLES, &q) == -1)
+    if (ioctl(fd, QUERY_SET_BUF) == -1)
     {
         perror("example ioctl set");
     }
@@ -105,13 +105,13 @@ int main(int argc, char *argv[])
     switch (option)
     {
         case e_get:
-            get_vars(fd);
+            get_status(fd);
             break;
         case e_clr:
-            clr_vars(fd);
+            clr_buf(fd);
             break;
         case e_set:
-            set_vars(fd);
+            set_buf(fd);
             break;
         default:
             break;
